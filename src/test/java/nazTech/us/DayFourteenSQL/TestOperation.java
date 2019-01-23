@@ -13,6 +13,7 @@ import Model.Employee;
 public class TestOperation {
 	
 	EmployeeDAOimplimentation eo = new EmployeeDAOimplimentation();
+	DBEmployeeOperation operation = new DBEmployeeOperation();
 	
 	@Test
 	public void addEmpTest() throws SQLException
@@ -45,7 +46,7 @@ public class TestOperation {
 	@Test
 	public void updatebyIdTest() throws SQLException
 	{
-		Employee employee = new Employee(6,"Rafayet Hossain", "Dhaka", 2019);
+		Employee employee = new Employee(11,"Hossain", "Dhaka", 1000);
 		//Employee em1 = new Employee(1, "New Ro", "CTG", 124578);
 		
 		assertTrue(eo.updateEmployeeByID(employee));
@@ -55,9 +56,15 @@ public class TestOperation {
 	@Test
 	public void findTest() throws SQLException
 	{
-		//assertTrue(eo.deleteEmployee(5));
 		
 		assertTrue(eo.userFindByID(8));
 	}
+	
+	public void avgTest() throws SQLException
+	{
+		
+		assertTrue(operation.avgValue(769.83333333333));
+	}
+	
 
 }

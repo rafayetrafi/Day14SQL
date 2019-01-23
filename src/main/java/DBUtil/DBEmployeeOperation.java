@@ -157,6 +157,34 @@ public class DBEmployeeOperation {
 	}
 	
 	
+	public boolean avgValue() throws SQLException
+	{
+		String query = "select avg(salary) from rafayet_student_Table";
+		PreparedStatement statement = con.prepareStatement(query);
+		
+		
+		
+		ResultSet rowUpdated = statement.executeQuery();
+		
+
+		if(rowUpdated.next())
+		{
+			dbConnection.closeConnection();
+			log.info("Avg test okay");
+			return true;
+			
+			
+		}
+		else
+		{
+			dbConnection.closeConnection();
+			log.info("Avg test not okay");
+			return false;
+		}
+
+	}
+	
+	
 	
 	
 
