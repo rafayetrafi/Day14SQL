@@ -71,6 +71,37 @@ public class DBEmployeeOperation {
 		}
 			
 	}
+	
+	public boolean updateByID(Employee employee) throws SQLException {
+		
+		String query = "Update rafayet_student_Table set name = ?, residence = ?, salary = ? where id = ?";
+		
+		PreparedStatement statement = con.prepareStatement(query);
+		statement.setString(1, employee.getName());
+		statement.setString(2, employee.getResidence());
+		statement.setInt(3, employee.getSalary());
+		statement.setInt(4, employee.getId());
+		
+		int rowUpdated = statement.executeUpdate();
+
+		if(rowUpdated > 0)
+		{
+			dbConnection.closeConnection();
+			log.info("Update successfully");
+			return true;
+			
+			
+		}
+		else
+		{
+			dbConnection.closeConnection();
+			log.info("Update Unsuccessfull");
+			return false;
+		}
+			
+	}
+	
+	
 
 	public boolean delete(int id) throws SQLException {
 		
@@ -101,13 +132,14 @@ public class DBEmployeeOperation {
 	}
 
 	public boolean find(int id) throws SQLException {
-		String query = "select * from rafayet_student_Table where id=?";
+		
+		String query = "select * from rafayet_student_Table where id = ?";
 		PreparedStatement statement = con.prepareStatement(query);
 		statement.setInt(1, id);
 		
-		int rowUpdated = statement.executeUpdate();
+		ResultSet rowUpdated = statement.executeQuery();
 
-		if(rowUpdated > 0)
+		if(rowUpdated.next())
 		{
 			dbConnection.closeConnection();
 			log.info("Data Found");

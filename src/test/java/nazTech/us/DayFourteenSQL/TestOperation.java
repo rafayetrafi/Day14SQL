@@ -33,12 +33,31 @@ public class TestOperation {
 	
 	
 	@Test
-	public void updateTest() throws SQLException
+	public void updatebyNameTest() throws SQLException
 	{
 		Employee employee = new Employee("Rafyae", "Bangladesh", 200);
-		Employee em1 = new Employee(1, "New Ro", "CTG", 124578);
+		//Employee em1 = new Employee(1, "New Ro", "CTG", 124578);
 		
-		assertTrue(eo.updateEmployee(employee));
+		assertTrue(eo.updateEmployeeByName(employee));
+	}
+	
+	
+	@Test
+	public void updatebyIdTest() throws SQLException
+	{
+		Employee employee = new Employee(6,"Rafayet Hossain", "Dhaka", 2019);
+		//Employee em1 = new Employee(1, "New Ro", "CTG", 124578);
+		
+		assertTrue(eo.updateEmployeeByID(employee));
+	}
+	
+	
+	@Test
+	public void findTest() throws SQLException
+	{
+		//assertTrue(eo.deleteEmployee(5));
+		
+		assertTrue(eo.userFindByID(8));
 	}
 
 }

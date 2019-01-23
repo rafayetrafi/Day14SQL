@@ -36,7 +36,14 @@ public class EmployeeDAOimplimentation implements EmployeeDAOinterface {
 	}
 
 	@Override
-	public boolean updateEmployee(Employee employee) throws SQLException {
+	public boolean updateEmployeeByID(Employee employee) throws SQLException {
+
+		boolean update = op.updateByID(employee);
+
+		return update;
+	}
+	
+	public boolean updateEmployeeByName(Employee employee) throws SQLException {
 
 		boolean update = op.updateByName(employee);
 
