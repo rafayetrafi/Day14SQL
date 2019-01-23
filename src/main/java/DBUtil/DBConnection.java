@@ -30,7 +30,7 @@ public class DBConnection {
 			log.info("connection created.");
 				//System.out.println("connection created");
 			}
-			conn.close();
+			//conn.close();
 		} catch (Exception e) {
 			log.error("Connection error: "+e.getMessage());
 			//System.out.println("Connection error:" + e.getMessage());
@@ -46,6 +46,11 @@ public class DBConnection {
 	}
 	
 }
+ 
+ public void closeConnection() throws SQLException
+ {
+	 conn.close();
+ }
 	
 	public Connection getConnection() {
 		return conn;

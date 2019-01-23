@@ -1,37 +1,54 @@
 package DAOimplementation;
 
-import DAO.EmployeeDAOinterface;
-import Model.Employee;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
+import DAO.EmployeeDAOinterface;
+import DBUtil.DBEmployeeOperation;
+import Model.Employee;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class EmployeeDAOimplimentation implements EmployeeDAOinterface {
+	
+	//Employee employee = new Employee("Suddam", "Basundhara", 70000);
+	
+	DBEmployeeOperation op = new DBEmployeeOperation();
 	
 
 	@Override
-	public boolean addEmployee(Employee employee) {
+	public boolean addEmployee(Employee employee) throws SQLException {
 
-		employee.setEID(1);
+		//Employee e1 = new Employee("Sohid","Lake Circus", 500000);
 		
-		
-		
-		return false;
+		boolean inserted = op.insert(employee);
+
+		return inserted;
 	}
 
 	@Override
-	public Employee deleteEmployee(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean deleteEmployee(int id) throws SQLException {
+		
+	
+		boolean delete = op.delete(id);
+
+		return delete;
 	}
 
 	@Override
-	public Employee updateEmployee(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean updateEmployee(Employee employee) throws SQLException {
+
+		boolean update = op.updateByName(employee);
+
+		return update;
 	}
 
 	@Override
-	public Employee userFindByID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean userFindByID(int id) throws SQLException {
+
+		boolean find = op.find(id);
+		
+		return find;
 	}
 
 }

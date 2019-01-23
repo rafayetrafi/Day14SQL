@@ -1,12 +1,14 @@
 package DAO;
 
+import java.sql.SQLException;
+
 import Model.Employee;
 
 public interface EmployeeDAOinterface {
 	
-	public boolean addEmployee(Employee employee);
-	public Employee deleteEmployee(int id);
-	public Employee updateEmployee(int id);
-	public Employee userFindByID(int id);
+	public boolean addEmployee(Employee employee) throws SQLException;
+	public boolean deleteEmployee(int id) throws SQLException;
+	public boolean updateEmployee(Employee employee) throws SQLException;
+	public boolean userFindByID(int id) throws SQLException;
 
 }
