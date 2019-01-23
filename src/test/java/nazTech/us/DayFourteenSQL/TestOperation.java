@@ -85,5 +85,14 @@ public class TestOperation {
 
 	}
 	
+	@Test
+	public void secondMaxTest() throws SQLException
+	{
+		
+		assertEquals(1000, operation.secondMaxValue());
+
+	}
+	
+	
 
 }

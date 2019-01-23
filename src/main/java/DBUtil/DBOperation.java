@@ -247,6 +247,35 @@ public class DBOperation {
 	}
 	
 	
+	public int secondMaxValue() throws SQLException
+	{
+		String query = "select max(salary) AS salary from rafayet_student_Table WHERE salary < (SELECT MAX(salary) FROM rafayet_student_Table)";
+		PreparedStatement statement = con.prepareStatement(query);
+
+		ResultSet rowUpdated = statement.executeQuery();
+		
+		
+		if(rowUpdated.next())
+		{
+			int secondMaxValue = rowUpdated.getInt(1);
+			//avgValue = rowUpdated.getDouble(1);
+
+			dbConnection.closeConnection();
+			
+			return secondMaxValue;
+		}
+	
+		else
+		{
+			dbConnection.closeConnection();
+			log.info("Avg test not okay");
+			return 0;
+		}
+
+	}
+	
+	
+	
 	
 	
 
