@@ -6,7 +6,7 @@ import Model.Employee;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class DBEmployeeOperation {
+public class DBOperation {
 
 	DBConnection dbConnection = DBConnection.getInstance();
 	Connection con = dbConnection.getConnection();
@@ -157,7 +157,7 @@ public class DBEmployeeOperation {
 	}
 	
 	
-	public boolean avgValue() throws SQLException
+	public int avgValue() throws SQLException
 	{
 		String query = "select avg(salary) from rafayet_student_Table";
 		PreparedStatement statement = con.prepareStatement(query);
@@ -166,20 +166,82 @@ public class DBEmployeeOperation {
 		
 		ResultSet rowUpdated = statement.executeQuery();
 		
-
+		
 		if(rowUpdated.next())
 		{
+			int avgValue = rowUpdated.getInt(1);
+			//avgValue = rowUpdated.getDouble(1);
+
 			dbConnection.closeConnection();
-			log.info("Avg test okay");
-			return true;
 			
-			
+			return avgValue;
 		}
+	
 		else
 		{
 			dbConnection.closeConnection();
 			log.info("Avg test not okay");
-			return false;
+			return 0;
+		}
+
+	}
+	
+	
+	public int minValue() throws SQLException
+	{
+		String query = "select min(salary) from rafayet_student_Table";
+		PreparedStatement statement = con.prepareStatement(query);
+		
+		
+		
+		ResultSet rowUpdated = statement.executeQuery();
+		
+		
+		if(rowUpdated.next())
+		{
+			int minValue = rowUpdated.getInt(1);
+			//avgValue = rowUpdated.getDouble(1);
+
+			dbConnection.closeConnection();
+			
+			return minValue;
+		}
+	
+		else
+		{
+			dbConnection.closeConnection();
+			log.info("Avg test not okay");
+			return 0;
+		}
+
+	}
+	
+	
+	public int maxValue() throws SQLException
+	{
+		String query = "select max(salary) from rafayet_student_Table";
+		PreparedStatement statement = con.prepareStatement(query);
+		
+		
+		
+		ResultSet rowUpdated = statement.executeQuery();
+		
+		
+		if(rowUpdated.next())
+		{
+			int maxValue = rowUpdated.getInt(1);
+			//avgValue = rowUpdated.getDouble(1);
+
+			dbConnection.closeConnection();
+			
+			return maxValue;
+		}
+	
+		else
+		{
+			dbConnection.closeConnection();
+			log.info("Avg test not okay");
+			return 0;
 		}
 
 	}
