@@ -1,6 +1,9 @@
 package DBUtil;
 
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import Model.Employee;
 import lombok.extern.slf4j.Slf4j;
@@ -100,8 +103,6 @@ public class DBOperation {
 		}
 			
 	}
-	
-	
 
 	public boolean delete(int id) throws SQLException {
 		
@@ -155,8 +156,7 @@ public class DBOperation {
 		}
 			
 	}
-	
-	
+
 	public int avgValue() throws SQLException
 	{
 		String query = "select avg(salary) from rafayet_student_Table";
@@ -185,8 +185,7 @@ public class DBOperation {
 		}
 
 	}
-	
-	
+
 	public int minValue() throws SQLException
 	{
 		String query = "select min(salary) from rafayet_student_Table";
@@ -215,8 +214,7 @@ public class DBOperation {
 		}
 
 	}
-	
-	
+
 	public int maxValue() throws SQLException
 	{
 		String query = "select max(salary) from rafayet_student_Table";
@@ -243,10 +241,10 @@ public class DBOperation {
 			log.info("Avg test not okay");
 			return 0;
 		}
+		
 
 	}
-	
-	
+
 	public int secondMaxValue() throws SQLException
 	{
 		String query = "select max(salary) AS salary from rafayet_student_Table WHERE salary < (SELECT MAX(salary) FROM rafayet_student_Table)";
@@ -273,6 +271,30 @@ public class DBOperation {
 		}
 
 	}
+
+	public List<Employee> findTop(int item) throws SQLException
+	{
+		String query = "SELECT TOP (?) * from rafayet_student_Table";
+		PreparedStatement statement = con.prepareStatement(query);
+		statement.setInt(1, item);
+		
+		ResultSet rowUpdated = statement.executeQuery();
+		
+		List<Employee> eList = new ArrayList<Employee>();
+		
+		while(rowUpdated.next())
+		{
+			Employee employee = new Employee(rowUpdated.getInt("id"),rowUpdated.getString("name"),rowUpdated.getString("residence"),rowUpdated.getInt("salary"));		
+			eList.add(employee);
+			//log.info("Top Data Found");
+			
+		}
+		
+		dbConnection.closeConnection();
+		return eList;
+
+	}
+	
 	
 	
 	
@@ -280,3 +302,6 @@ public class DBOperation {
 	
 
 }
+	
+
+

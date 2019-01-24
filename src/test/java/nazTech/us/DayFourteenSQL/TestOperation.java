@@ -10,7 +10,9 @@ import org.junit.Test;
 import DAOimplementation.DAO;
 import DBUtil.DBOperation;
 import Model.Employee;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class TestOperation {
 	
 	DAO dao = new DAO();
@@ -90,6 +92,23 @@ public class TestOperation {
 	{
 		
 		assertEquals(1000, operation.secondMaxValue());
+
+	}
+	
+	@Test
+	public void findTopTest() throws SQLException
+	{
+		//operation.findTop(3);
+		
+		
+		
+		for (Employee it : operation.findTop(3)) {
+			
+			System.out.println(it);
+		}
+		
+		
+		//assertEquals(1000, operation.secondMaxValue());
 
 	}
 	
